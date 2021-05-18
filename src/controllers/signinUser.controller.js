@@ -3,21 +3,27 @@ import jwt from 'jsonwebtoken'
 
 const signinController ={}
 
-signinController.signin = async(req,res)=>{
+signinController.signin = async(req,res,next)=>{
     let body = req.body;
     try {
         User.findOne({email:body.email},(err,user) =>{
             if(!user){
-                console.log('Email no valido')
                 console.log(user.email + "  " + user.clave) 
+                console.log('Email no valido')
+                
                 console.log(body.email + "  " + body.clave)
+                
             } else {
                 if(body.clave !== user.clave){
                     console.log("Clave invalida")
+                    next()
                 } else {
                     const token = jwt.sign({_id:user.id}, process.env.JWT_SECRET ,{expiresIn: 60*60})
-                    res.status(200).json({mensaje:"Autenticacion validada"})
                     console.log(token)
+                    res.json({
+                        ok: true,token, _id:user._id
+                    })
+                    
                 }
             }
         })

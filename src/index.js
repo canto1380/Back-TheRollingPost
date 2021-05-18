@@ -16,7 +16,7 @@ const app = express();
 dotenv.config({path:".env"})
 
 /* Creacion de puerto */
-app.set('port', process.env.PORT || 4002)
+app.set('port', process.env.PORT || 4001)
 app.listen(app.get('port'), ()=>{
     console.log(`Desde el puerto ${app.get('port')}`)
 })
