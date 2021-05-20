@@ -10,5 +10,6 @@ const categoriasSchema = new Schema({
 }, 
 {timestamps: true})
 
-const Categorias = mongoose.model('categoria', categoriasSchema)
-export default Categorias
+module.exports = mongoose.model("Categoria", categoriasSchema)
+// const Categorias = mongoose.model('Categoria', categoriasSchema)
+// export default Categorias

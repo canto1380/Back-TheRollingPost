@@ -7,6 +7,7 @@ import dotenv from 'dotenv'
 import './database'
 import userRoutes from './routes/user.route'
 import categoriasRoutes from './routes/categorias.route'
+import noticiasRoutes from './routes/noticias.route'
 
 /*** CONFIGURACIONES ***/
 /* Instancia de express */
@@ -16,7 +17,7 @@ const app = express();
 dotenv.config({path:".env"})
 
 /* Creacion de puerto */
-app.set('port', process.env.PORT || 4001)
+app.set('port', process.env.PORT || 4002)
 app.listen(app.get('port'), ()=>{
     console.log(`Desde el puerto ${app.get('port')}`)
 })
@@ -31,3 +32,4 @@ app.use(express.static(path.join(__dirname,'../public')))
 /* Rutas */
 app.use('/user', userRoutes)
 app.use('/categorias', categoriasRoutes)
+app.use('/noticias', noticiasRoutes)
