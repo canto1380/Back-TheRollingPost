@@ -3,10 +3,10 @@ import morgan from 'morgan'
 import cors from 'cors'
 import path from 'path'
 import dotenv from 'dotenv'
-
 import './database'
 import userRoutes from './routes/user.route'
 import categoriasRoutes from './routes/categorias.route'
+import clientesRoutes from './routes/categorias.route'
 
 /*** CONFIGURACIONES ***/
 /* Instancia de express */
@@ -31,3 +31,4 @@ app.use(express.static(path.join(__dirname,'../public')))
 /* Rutas */
 app.use('/user', userRoutes)
 app.use('/categorias', categoriasRoutes)
+app.use('/clientes', clientesRoutes)
