@@ -7,4 +7,7 @@ router.route('/suscripcion')
 .get(clientesCtrl.listarClientes)
 .post(clientesCtrl.nuevaSuscripcion);
 
+router.route('/:id')
+.delete(clientesCtrl.rechazarCancelarSuscripcion)
+
 export default router;

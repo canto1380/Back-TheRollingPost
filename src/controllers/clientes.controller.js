@@ -39,4 +39,20 @@ const arregloClientes = await Clientes.find();
     }
 }
 
+clientesCtrl.rechazarCancelarSuscripcion = async(req, res)=>{
+   try{
+    console.log(req.params.id)
+    /*elimino usando id*/
+    await Clientes.findByIdAndDelete(req.params.id)
+    res.status(200).json({
+        mensaje: "la suscripcion fue rechazada o cancelada correctamente"
+    })
+   } catch(error){
+       console.log(error);
+       res.status(404).json({
+           mensaje: "No se pudo encontra la solicitud de suscripcion"
+       })
+   }
+}
+
 export default clientesCtrl;
