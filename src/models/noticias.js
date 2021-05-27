@@ -1,3 +1,4 @@
+import { config } from 'dotenv'
 import mongoose, {Schema, Mongoose} from 'mongoose'
 
 import Categoria from './categorias'
@@ -6,13 +7,13 @@ const noticiaSchema = new Schema({
     titulo:{
         type: String,
         trim: true,
-        required: true,
-        minlength:30
+        required: true
     },
     descripcion:{
         type:String,
         trim: true,
-        required: true
+        required: true,
+        minLength: 20
     },
     categoria:{
         type: String,
@@ -23,19 +24,29 @@ const noticiaSchema = new Schema({
         required: true
     },
     pieDeFoto:{
-        type: String,
-        minlength:20
+        type: String
     },
     descripNoticia:{
         type: String,
         trim: true,
         required: true
     },
-    nComentarios:{
-        type: Number
+    autor:{
+        type: String,
+        trim: true,
+        required: true
+    },
+    hora:{
+        type: String,
+        trim: true,
+        required: true
+    },
+    fecha:{
+        type: String,
+        trim: true,
+        required: true
     }
-},
-    {timestamps: true}
+}
 )
 
 module.exports = mongoose.model('Noticia', noticiaSchema)

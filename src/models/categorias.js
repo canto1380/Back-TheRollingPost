@@ -6,6 +6,10 @@ const categoriasSchema = new Schema({
         trim:true,
         required:true,
         unique: true
+    },
+    destacada:{
+        type: Boolean,
+        default: false
     }
 }, 
 {timestamps: true})
