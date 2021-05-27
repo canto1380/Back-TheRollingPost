@@ -3,5 +3,8 @@ import clientesCtrl from '../controllers/clientes.controller'
 
 const router = Router();
 
-router
-.post('/clientes', clientesCtrl.nuevaSuscripcion);
+router.route('/suscripcion')
+.get(clientesCtrl.listarClientes)
+.post(clientesCtrl.nuevaSuscripcion);
+
+export default router;

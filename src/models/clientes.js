@@ -1,7 +1,7 @@
 import mongoose, {Schema} from 'mongoose';
 
 const clienteSchema = new Schema ({
-    apNom:{
+    nomAp:{
         type:String,
         trim:true,
         required:true
@@ -9,22 +9,22 @@ const clienteSchema = new Schema ({
     direccion:{
         type:String,
         trim:true,
-        required:true,
+        required:true
     },
     localidad:{
         type:String,
         trim:true,
-        required:true,
+        required:true
     },
     codigoPostal:{
         type:Number,
         trim:true,
-        required:true,
+        required:true
     },
     telefono:{
         type:Number,
         trim:true,
-        required:true,
+        required:true
     },
     email:{
         type:String,
@@ -35,12 +35,12 @@ const clienteSchema = new Schema ({
      password:{
         type:String,
         trim:true,
-        required:true,
+        required:true
      },
         plan:{
         type:String,
         trim:true,
-        required:true,
+        required:true
         }
 })
 
