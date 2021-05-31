@@ -28,7 +28,6 @@ const noticiaSchema = new Schema({
     },
     descripNoticia:{
         type: String,
-        trim: true,
         required: true
     },
     autor:{

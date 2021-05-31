@@ -17,13 +17,7 @@ noticiasControlador.nuevaNoticia = async(req,res) =>{
 /* Lista de noticias */
 noticiasControlador.listarNoticias = async(req,res) =>{
     try {
-        const noticias = await Noticia.find(
-    //       {}, function(err, cit) {
-    //       Categoria.populate(cit, {path: "idCategoria"},function(err, cit) {
-    //           res.status(200).send(cit);
-    //       })
-    //   }
-        )
+        const noticias = await Noticia.find()
         res.status(200).json(noticias)
     } catch (error) {
         res.status(404).json({mensaje: "Error al listar noticias"})
