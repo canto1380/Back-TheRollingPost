@@ -7,13 +7,16 @@ const noticiaSchema = new Schema({
     titulo:{
         type: String,
         trim: true,
-        required: true
+        required: true,
+        minLength: 12,
+        maxLength: 40
     },
     descripcion:{
         type:String,
         trim: true,
         required: true,
-        minLength: 20
+        minLength: 12,
+        maxLength: 50
     },
     categoria:{
         type: String,
@@ -28,7 +31,9 @@ const noticiaSchema = new Schema({
     },
     descripNoticia:{
         type: String,
-        required: true
+        required: true,
+        minLength: 2000,
+        maxLength: 6500
     },
     autor:{
         type: String,
