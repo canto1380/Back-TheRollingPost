@@ -6,11 +6,39 @@ const noticiasControlador ={}
 /* Nueva noticia */
 noticiasControlador.nuevaNoticia = async(req,res) =>{
     try {
+        // const {
+        //     titulo,
+        //     descripcion,
+        //     categoria,
+            
+        //     pieDeFoto,
+        //     descripNoticia,
+        //     autor,
+        //     hora,
+        //     fecha
+        // } = req.body
+
+        // const noticia = new Noticia({
+        //     titulo,
+        //     descripcion,
+        //     categoria,
+            
+        //     pieDeFoto,
+        //     descripNoticia,
+        //     autor,
+        //     hora,
+        //     fecha
+        // })
+        // if(req.file){
+            //     const {filename} = req.file
+            //     noticia.setImgUrl(filename) 
+            // }
+            
         const noticia = new Noticia(req.body)
         await noticia.save()
         res.status(201).json({mensaje:"Noticia agregada con exito"})       
     } catch (error) {
-        res.status(500).json({mensaje:'No se pudo agregar la noticia'})
+        res.status(500).json({mensaje:"No se pudo agregar noticia"})
     }
 }
 

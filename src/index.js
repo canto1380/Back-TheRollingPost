@@ -3,6 +3,8 @@ import morgan from 'morgan'
 import cors from 'cors'
 import path from 'path'
 import dotenv from 'dotenv'
+import bodyParser from 'body-parser'
+
 import './database'
 import userRoutes from './routes/user.route'
 import categoriasRoutes from './routes/categorias.route'
@@ -29,6 +31,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(express.static(path.join(__dirname,'../public')))
 
+// app.use('../public', express.static(`${__dirname}/storage/img`))
 
 /* Rutas */
 app.use('/user', userRoutes)
@@ -37,4 +40,4 @@ app.use('/noticias', noticiasRoutes)
 app.use('/clientes', clientesRoutes)
 
 
-
+module.exports = app
