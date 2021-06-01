@@ -42,6 +42,7 @@ const userSchema = new Schema ({
 )
 
 userSchema.pre('save', function(next){
+    
     bcrypt.genSalt(10).then(salts =>{
         bcrypt.hash(this.clave,salts).then(hash =>{
             this.clave =hash;
@@ -49,6 +50,22 @@ userSchema.pre('save', function(next){
         }).catch(error => next(error))
     }).catch(error => next(error))
 })
+
+userSchema.methods.comparePassword = function(clave, cb) {
+    bcrypt.compare(clave , this.clave, function(err, isMatch) {
+        if (err) return cb(err);
+        cb(null, isMatch);
+     });
+ };
+
+// userSchema.pre('save', function(next){
+//     bcrypt.genSalt(10).then(salts =>{
+//         bcrypt.hash(this.clave,salts).then(hash =>{
+//             this.clave =hash;
+//             next();
+//         }).catch(error => next(error))
+//     }).catch(error => next(error))
+// })
 
 const User = mongoose.model('user', userSchema)
 export default User

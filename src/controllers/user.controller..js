@@ -9,6 +9,7 @@ userController.nuevoUsuario = async(req,res) =>{
         await user.save()
         res.status(201).json({mensaje:"Usuario agregado con exito"})       
     } catch (error) {
+        console.log(error)
         res.status(500).json({mensaje:'No se pudo agregar el usuario'})
     }
 }
