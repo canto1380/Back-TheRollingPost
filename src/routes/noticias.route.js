@@ -1,10 +1,11 @@
 import {Router} from 'express'
 import noticiasControlador from '../controllers/noticias.controller'
+import upload from '../libs/storage'
 
 const router = Router();
 
 /* Ruta agregar noticia */
-router.post('/addNoticia', noticiasControlador.nuevaNoticia)
+router.post('/addNoticia' ,noticiasControlador.nuevaNoticia)
 
 /* Ruta listar mnoticias */
 router.get('/listNoticias',noticiasControlador.listarNoticias)
