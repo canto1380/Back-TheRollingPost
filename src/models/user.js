@@ -58,14 +58,6 @@ userSchema.methods.comparePassword = function(clave, cb) {
      });
  };
 
-// userSchema.pre('save', function(next){
-//     bcrypt.genSalt(10).then(salts =>{
-//         bcrypt.hash(this.clave,salts).then(hash =>{
-//             this.clave =hash;
-//             next();
-//         }).catch(error => next(error))
-//     }).catch(error => next(error))
-// })
 
 const User = mongoose.model('user', userSchema)
 export default User
