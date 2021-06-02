@@ -1,6 +1,5 @@
 import {Router} from 'express'
 import noticiasControlador from '../controllers/noticias.controller'
-import upload from '../libs/storage'
 
 const router = Router();
 

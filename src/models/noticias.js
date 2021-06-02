@@ -1,7 +1,5 @@
-import { config } from 'dotenv'
 import mongoose, {Schema, Mongoose} from 'mongoose'
-import {appConfig} from '../../config'
-import Categoria from './categorias'
+const { ObjectId } = mongoose.Schema
 
 const noticiaSchema = new Schema({
     titulo:{
@@ -19,7 +17,8 @@ const noticiaSchema = new Schema({
         // maxLength: 50
     },
     categoria:{
-        type: String,
+        type: ObjectId,
+        ref:'Categoria',
         required: true
     },
     foto:{
@@ -49,13 +48,8 @@ const noticiaSchema = new Schema({
         trim: true,
         required: true
     }
-}
+},
+{timestamps: true}
 )
-// NoticiaSchema.methods.setImgUrl = function setImgUrl(filename) {
-//     const {host, port} = appConfig
-//     this.image = `${host}:${port}/public/${filename}`
-// }
 
 module.exports = mongoose.model('Noticia', noticiaSchema)
-// const Noticia = mongoose.model('Noticia', noticiaSchema)
-// export default Noticia

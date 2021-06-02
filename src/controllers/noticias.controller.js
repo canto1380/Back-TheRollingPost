@@ -5,35 +5,7 @@ const noticiasControlador ={}
 
 /* Nueva noticia */
 noticiasControlador.nuevaNoticia = async(req,res) =>{
-    try {
-        // const {
-        //     titulo,
-        //     descripcion,
-        //     categoria,
-            
-        //     pieDeFoto,
-        //     descripNoticia,
-        //     autor,
-        //     hora,
-        //     fecha
-        // } = req.body
-
-        // const noticia = new Noticia({
-        //     titulo,
-        //     descripcion,
-        //     categoria,
-            
-        //     pieDeFoto,
-        //     descripNoticia,
-        //     autor,
-        //     hora,
-        //     fecha
-        // })
-        // if(req.file){
-            //     const {filename} = req.file
-            //     noticia.setImgUrl(filename) 
-            // }
-            
+    try {   
         const noticia = new Noticia(req.body)
         await noticia.save()
         res.status(201).json({mensaje:"Noticia agregada con exito"})       
@@ -44,11 +16,22 @@ noticiasControlador.nuevaNoticia = async(req,res) =>{
 
 /* Lista de noticias */
 noticiasControlador.listarNoticias = async(req,res) =>{
+   let order = req.query.order ? req.query.order : 'desc'
+   let sortBy = req.query.sortBy ? req.query.sortBy : 'createdAt'
     try {
-        const noticias = await Noticia.find()
-        res.status(200).json(noticias)
+        
+        await Noticia.find()
+        .sort([[sortBy, order]])
+        .exec((err, noticia) => {
+         if (err) {
+           return res.status(400).json({
+             error: "noticia not found"
+           })
+         }
+         res.json(noticia);
+       })
     } catch (error) {
-        res.status(404).json({mensaje: "Error al listar noticias"})
+        console.log(error)
     }
 }
 
