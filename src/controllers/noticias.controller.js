@@ -1,16 +1,32 @@
 import Noticia from '../models/noticias'
-import Categoria from '../models/categorias'
+import fs from "fs"
+import formidable from 'formidable'
+import _ from 'lodash'
+
 
 const noticiasControlador ={}
 
 /* Nueva noticia */
 noticiasControlador.nuevaNoticia = async(req,res) =>{
-    try {   
-        const noticia = new Noticia(req.body)
-        await noticia.save()
-        res.status(201).json({mensaje:"Noticia agregada con exito"})       
+    try {
+        let not = new formidable.IncomingForm()
+        not.keepExtensions = true;
+        not.parse(req, (err, campos, files)=>{
+            if(err){
+                res.status(400).json({mensaje:"Error en la carga de la img"})
+            }
+            const {titulo, descripcion, categoria, pieDeFoto, descripNoticia, autor, hora, fecha} = campos;
+            let noticia = new Noticia(campos)
+    
+            if(files.photo){
+                noticia.photo.data = fs.readFileSync(files.photo.path)
+                noticia.photo.contentType = files.photo.type
+            }
+            noticia.save()
+            res.json(noticia)
+        })
     } catch (error) {
-        res.status(500).json({mensaje:"No se pudo agregar noticia"})
+        res.status(500).json({mensaje:"No se pudo agregar la noticia"})
     }
 }
 
@@ -19,13 +35,13 @@ noticiasControlador.listarNoticias = async(req,res) =>{
    let order = req.query.order ? req.query.order : 'desc'
    let sortBy = req.query.sortBy ? req.query.sortBy : 'createdAt'
     try {
-        
         await Noticia.find()
+        .select("-photo")
         .sort([[sortBy, order]])
         .exec((err, noticia) => {
          if (err) {
            return res.status(400).json({
-             error: "noticia not found"
+             error: "No se puede listar"
            })
          }
          res.json(noticia);
@@ -43,6 +59,27 @@ noticiasControlador.buscarNoticia = async(req,res) =>{
     } catch (error) {
         res.status(500).json({mensaje:"Error al buscar un noticias por ID"})
     }
+}
+
+noticiasControlador.byId =(req,res,next,id)=>{
+    Noticia.findById(id)
+    .exec((err, noticia) => {
+      if (err || !noticia) {
+        return res.status(400).json({
+          error: "noticia not found"
+        });
+      }
+      req.noticia = noticia;
+      next();
+    })
+}
+
+noticiasControlador.buscarPhoto = (req, res, next)=>{
+    if (req.noticia.photo.data) {
+        res.set('Content-Type', req.noticia.photo.contentType)
+        return res.send(req.noticia.photo.data)
+      }
+      next();
 }
 
 /* Eliminar noticia */

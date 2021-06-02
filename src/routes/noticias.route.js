@@ -12,6 +12,9 @@ router.get('/listNoticias',noticiasControlador.listarNoticias)
 /* Ruta buscar noticia */
 router.get('/noticia/:id',noticiasControlador.buscarNoticia)
 
+router.param('byId', noticiasControlador.byId)
+router.get('/foto/:byId', noticiasControlador.buscarPhoto)
+
 /* Ruta eliminar noticia */
 router.delete('/deleteNoticia/:id', noticiasControlador.eliminarNoticia)
 

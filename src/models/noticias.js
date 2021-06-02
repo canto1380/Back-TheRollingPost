@@ -1,5 +1,4 @@
 import mongoose, {Schema, Mongoose} from 'mongoose'
-const { ObjectId } = mongoose.Schema
 
 const noticiaSchema = new Schema({
     titulo:{
@@ -17,12 +16,13 @@ const noticiaSchema = new Schema({
         // maxLength: 50
     },
     categoria:{
-        type: ObjectId,
-        ref:'Categoria',
+        type: String,
+        trim: true,
         required: true
     },
-    foto:{
-        type: String
+    photo:{
+        data: Buffer,
+        contentType: String
     },
     pieDeFoto:{
         type: String
