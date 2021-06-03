@@ -55,4 +55,17 @@ clientesCtrl.rechazarCancelarSuscripcion = async(req, res)=>{
    }
 }
 
+clientesCtrl.errorEliminar = async(req, res)=>{
+    try{
+        console.log(req.params)
+       const ultimo= await Clientes.findOneAndDelete({email: req.params.email} )
+        res.status(200).json({mensaje:"usuario borrado"})
+        console.log(ultimo)
+    }catch(error){  
+        res.status(404).json({
+            mensaje: "No se pudo borrar el ultimo cliente"
+        })
+    }
+}
+
 export default clientesCtrl;

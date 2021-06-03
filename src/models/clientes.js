@@ -1,4 +1,5 @@
 import mongoose, {Schema} from 'mongoose';
+import clientesCtrl from '../controllers/clientes.controller';
 
 const clienteSchema = new Schema ({
     nomAp:{
@@ -43,6 +44,7 @@ const clienteSchema = new Schema ({
         required:true
         }
 })
+
 
 const Clientes= mongoose.model("clientes", clienteSchema);
 

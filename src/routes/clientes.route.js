@@ -10,4 +10,7 @@ router.route('/suscripcion')
 router.route('/:id')
 .delete(clientesCtrl.rechazarCancelarSuscripcion)
 
+router.route('/buscar/:email')
+.delete(clientesCtrl.errorEliminar)
+
 export default router;
