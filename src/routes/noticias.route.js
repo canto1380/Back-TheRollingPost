@@ -1,6 +1,5 @@
 import {Router} from 'express'
 import noticiasControlador from '../controllers/noticias.controller'
-import upload from '../libs/storage'
 
 const router = Router();
 
@@ -12,6 +11,9 @@ router.get('/listNoticias',noticiasControlador.listarNoticias)
 
 /* Ruta buscar noticia */
 router.get('/noticia/:id',noticiasControlador.buscarNoticia)
+
+router.param('byId', noticiasControlador.byId)
+router.get('/foto/:byId', noticiasControlador.buscarPhoto)
 
 /* Ruta eliminar noticia */
 router.delete('/deleteNoticia/:id', noticiasControlador.eliminarNoticia)
