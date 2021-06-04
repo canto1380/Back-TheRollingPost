@@ -20,11 +20,10 @@ const noticiaSchema = new Schema({
         trim: true,
         required: true
     },
-    photo:{
-        data: Buffer,
-        contentType: String
+    foto:{
+        type: String
     },
-    pieDeFoto:{
+    pieDeImagen:{
         type: String
     },
     descripNoticia:{
@@ -47,6 +46,10 @@ const noticiaSchema = new Schema({
         type: String,
         trim: true,
         required: true
+    },
+    publicado:{
+        type: Boolean,
+        default: false
     }
 },
 {timestamps: true}

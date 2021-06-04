@@ -10,15 +10,15 @@ router.post('/addNoticia' ,noticiasControlador.nuevaNoticia)
 router.get('/listNoticias',noticiasControlador.listarNoticias)
 
 /* Ruta buscar noticia */
-router.get('/noticia/:id',noticiasControlador.buscarNoticia)
+router.get('/:id',noticiasControlador.buscarNoticia)
 
 router.param('byId', noticiasControlador.byId)
 router.get('/foto/:byId', noticiasControlador.buscarPhoto)
 
 /* Ruta eliminar noticia */
-router.delete('/deleteNoticia/:id', noticiasControlador.eliminarNoticia)
+router.delete('/:id', noticiasControlador.eliminarNoticia)
 
 /* Ruta actulizar noticias */
-router.put('/updateNoticias/:id', noticiasControlador.actualizarNoticia)
+router.put('/:id', noticiasControlador.actualizarNoticia)
 
 export default router;
