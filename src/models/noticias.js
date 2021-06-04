@@ -20,11 +20,10 @@ const noticiaSchema = new Schema({
         trim: true,
         required: true
     },
-    photo:{
-        data: Buffer,
-        contentType: String
+    foto:{
+        type: String
     },
-    pieDeFoto:{
+    pieDeImagen:{
         type: String
     },
     descripNoticia:{
