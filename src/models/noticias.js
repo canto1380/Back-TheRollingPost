@@ -46,6 +46,10 @@ const noticiaSchema = new Schema({
         type: String,
         trim: true,
         required: true
+    },
+    publicado:{
+        type: Boolean,
+        default: false
     }
 },
 {timestamps: true}
