@@ -36,7 +36,7 @@ noticiasControlador.listarNoticias = async(req,res) =>{
    let sortBy = req.query.sortBy ? req.query.sortBy : 'createdAt'
     try {
         await Noticia.find()
-        .select("-photo")
+        // .select("-photo")
         .sort([[sortBy, order]])
         .exec((err, noticia) => {
          if (err) {
