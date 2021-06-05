@@ -23,7 +23,7 @@ const noticiaSchema = new Schema({
     foto:{
         type: String
     },
-    pieDeImagen:{
+    pieDeFoto:{
         type: String
     },
     descripNoticia:{
