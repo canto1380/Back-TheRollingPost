@@ -26,7 +26,6 @@
     "dotenv": "^9.0.2",
     "express": "^4.17.1",
     "formidable": "^1.2.2",
-    "fs": "*",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "mongoose": "^5.12.9",
