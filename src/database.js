@@ -1,6 +1,8 @@
 import mongoose from 'mongoose'
 
-const url= 'mongodb://localhost:27017/therollingpost'
+// const url= 'mongodb://localhost:27017/therollingpost'
+
+const url= 'mongodb+srv://rollingpost7a:rolling@cluster0.vvsui.mongodb.net/therollingpost'
 
 mongoose.connect(url,{
     useNewUrlParser:true,

@@ -1,5 +1,5 @@
 import mongoose, {Schema} from 'mongoose';
-import clientesCtrl from '../controllers/clientes.controller';
+
 
 const clienteSchema = new Schema ({
     nomAp:{
