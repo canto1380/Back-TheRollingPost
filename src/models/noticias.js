@@ -1,4 +1,7 @@
-import mongoose, {Schema, Mongoose} from 'mongoose'
+import mongoose from 'mongoose'
+const Schema = mongoose.Schema
+
+import Categoria from './categorias'
 
 const noticiaSchema = new Schema({
     titulo:{
@@ -16,10 +19,11 @@ const noticiaSchema = new Schema({
         // maxLength: 50
     },
     categoria:{
-        type: String,
-        trim: true,
-        required: true
-    },
+        type: Schema.Types.ObjectId,
+        ref:'Categoria',
+        require:true
+    }
+    ,
     foto:{
         type: String
     },
@@ -29,8 +33,8 @@ const noticiaSchema = new Schema({
     descripNoticia:{
         type: String,
         required: true,
-        // minLength: 20,
-        // maxLength: 6500
+        minLength: 20,
+        maxLength: 6500
     },
     autor:{
         type: String,

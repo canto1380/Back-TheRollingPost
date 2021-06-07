@@ -1,8 +1,5 @@
-import Noticia from '../models/noticias'
-import fs from "fs"
-import formidable from 'formidable'
-import _ from 'lodash'
-
+const Noticia = require('../models/noticias')
+const Categoria = require('../models/categorias')
 
 const noticiasControlador ={}
 
@@ -41,8 +38,8 @@ noticiasControlador.listarNoticias = async(req,res) =>{
    let sortBy = req.query.sortBy ? req.query.sortBy : 'createdAt'
     try {
         await Noticia.find()
-        // .select("-photo")
         .sort([[sortBy, order]])
+        .populate( {path: "categoria"})
         .exec((err, noticia) => {
          if (err) {
            return res.status(400).json({
@@ -54,6 +51,7 @@ noticiasControlador.listarNoticias = async(req,res) =>{
     } catch (error) {
         console.log(error)
     }
+        
 }
 
 /* Buscar una noticia por ID */
