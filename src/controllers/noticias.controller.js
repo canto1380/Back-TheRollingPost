@@ -39,7 +39,7 @@ noticiasControlador.listarNoticias = async(req,res) =>{
     try {
         await Noticia.find()
         .sort([[sortBy, order]])
-        .populate( {path: "noticias.categoria"})
+        .populate( {path: "categoria"})
         .exec((err, noticia) => {
          if (err) {
            return res.status(400).json({
