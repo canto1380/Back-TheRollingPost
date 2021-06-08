@@ -10,6 +10,7 @@ import userRoutes from './routes/user.route'
 import categoriasRoutes from './routes/categorias.route'
 import noticiasRoutes from './routes/noticias.route'
 import clientesRoutes from './routes/clientes.route'
+import comentariosRoutes from './routes/comentarios.route'
 
 /*** CONFIGURACIONES ***/
 /* Instancia de express */
@@ -38,6 +39,6 @@ app.use('/user', userRoutes)
 app.use('/categorias', categoriasRoutes)
 app.use('/noticias', noticiasRoutes)
 app.use('/clientes', clientesRoutes)
-
+app.use('/comentarios', comentariosRoutes)
 
 module.exports = app

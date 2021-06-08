@@ -1,9 +1,9 @@
-import mongoose ,{Schema} from 'mongoose'
+import mongoose from 'mongoose'
+const schema = mongoose.Schema
 
-const categoriasSchema = new Schema({
+const categoriasSchema = new schema({
     nombreCategoria:{
         type:String,
-        trim:true,
         required:true,
         unique: true
     },
