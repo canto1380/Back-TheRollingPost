@@ -42,11 +42,13 @@ noticiasControlador.listarNoticias = async(req,res) =>{
         .populate( {path: "categoria"})
         .exec((err, noticia) => {
          if (err) {
-           return res.status(400).json({
+           res.status(400).json({
              error: "No se puede listar"
            })
+         }else{
+            res.status(200).json(noticia);
          }
-         res.json(noticia);
+         
        })
     } catch (error) {
         console.log(error)
