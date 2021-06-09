@@ -1,28 +1,10 @@
 const Noticia = require('../models/noticias')
-const Categoria = require('../models/categorias')
-
 const noticiasControlador ={}
 
 /* Nueva noticia */
 noticiasControlador.nuevaNoticia = async (req,res) => {
     try {
-        // let not = new formidable.IncomingForm()
-        // not.keepExtensions = true;
-        // not.parse(req, (err, campos, files)=>{
-        //     if(err){
-        //         return res.status(400).json({mensaje:"Error en la carga de la img"})
-        //     }
-        //     const {titulo, descripcion, categoria, pieDeFoto, descripNoticia, autor, hora, fecha} = campos;
-        //     let noticia = new Noticia(campos)
-    
-        //     if(files.photo){
-        //         noticia.photo.data = fs.readFileSync(files.photo.path)
-        //         noticia.photo.contentType = files.photo.type
-        //     }
-        //     noticia.save()
-        //     res.json(noticia)
-        // })
-
+       
             let noticia = new Noticia(req.body)
             await noticia.save()
             res.status(201).json(noticia)
