@@ -42,9 +42,15 @@ noticiasControlador.listarNoticias = async(req,res) =>{
 noticiasControlador.buscarNoticia = async(req,res) =>{
     try {
         const noticia = await Noticia.findById(req.params.id)
-        res.status(200).json(noticia)
-    } catch (error) {
-        res.status(500).json({mensaje:"Error al buscar un noticias por ID"})
+        .populate( {path: "categoria"})
+        .exec((err, noticia) => {
+            if(err){
+                return  res.status(500).json({mensaje:"Error al buscar un noticias por ID"})
+            }else{
+                res.status(200).json(noticia)
+            }
+    })} catch (error) {
+        console.log(error)
     }
 }
 
