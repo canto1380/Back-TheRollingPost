@@ -19,13 +19,15 @@ const userSchema = new Schema ({
             type: String,
             trim: true,
             required:true,
-            unique: true
+            unique: true,
+            maxlength:25
         },
         clave:{
             type: String,
             trim: true,
             required:true,
-            minlength: 8
+            minlength: 8,
+            maxlength: 15
         },
         telefono:{
             type: Number,
