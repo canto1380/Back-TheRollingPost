@@ -41,7 +41,7 @@ noticiasControlador.listarNoticias = async(req,res) =>{
 /* Buscar una noticia por ID */
 noticiasControlador.buscarNoticia = async(req,res)=>{ 
     try {
-        const noticia = await Noticia.findById(req.params.id)
+        const noticia = await Noticia.findById(req.params.id).populate("categoria")
         res.status(200).json(noticia)
     } catch (error) {
         res.status(500).json({mensaje:"Error al buscar un noticias por ID"})
@@ -51,7 +51,7 @@ noticiasControlador.buscarNoticia = async(req,res)=>{
 
 
 noticiasControlador.byId =(req,res,next,id)=>{
-    Noticia.findById(id)
+    Noticia.findById(id).populate("categoria")
     .exec((err, noticia) => {
       if (err || !noticia) {
         return res.status(400).json({
