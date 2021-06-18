@@ -28,9 +28,7 @@ signinController.signin = async (req, res) => {
                         })
                         console.log('contrasena correcta')
                     } else {
-                        // setTimeout(() => {
-                        //     console.log('errir')
-                        // }, 500);
+                        
                         return res.status(401).json({
                              mensaje:"Error en la clave"
                         })
