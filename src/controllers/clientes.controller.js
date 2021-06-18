@@ -3,28 +3,33 @@ import Clientes from '../models/clientes'
 const clientesCtrl = {};
 
 clientesCtrl.nuevaSuscripcion = async(req,res) =>{
-     try{   
- const clienteCreado = new Clientes({
-             nomAp: req.body.nomAp,
-             direccion: req.body.direccion,
-             localidad: req.body.localidad,
-             codigoPostal: req.body.codigoPostal,
-             telefono: req.body.telefono,
-             email: req.body.email,
-             password: req.body.password,
-             plan: req.body.plan
- })
- await clienteCreado.save();
-    res.status(201).json({
-         mensaje: "Suscripcion enviada correctamente"
-     })
-     }catch(error){
-         console.log(error)
-         res.status(500).json({
-             mensaje: "Error al enviar la solicitud"
-         });
-     }
+    try{   
+const clienteCreado = new Clientes({
+            nomAp: req.body.nomAp,
+            direccion: req.body.direccion,
+            localidad: req.body.localidad,
+            codigoPostal: req.body.codigoPostal,
+            telefono: req.body.telefono,
+            email: req.body.email,
+            password: req.body.password,
+            plan: req.body.plan
+})
+const email = req.body.email
+
+/*verifico que no haya otro  usuario registrado con ese email*/
+await Clientes.findOne({email}, function(err, email){
+   if(!email){
+       res.status(200).json({ mensaje: "direccion de email disponible, registrando..."})
+       clienteCreado.save();
+   }else{
+       res.status(400).json({
+           mensaje: "el email ya se encuentra registrado"
+       })
+}})
+}catch(err){
+   console.log(err)
 }
+};
 
 clientesCtrl.listarClientes = async (req,res)=>{
     try{
