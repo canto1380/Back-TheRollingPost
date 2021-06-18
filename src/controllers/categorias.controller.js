@@ -5,13 +5,25 @@ const categoriasController= {};
 /* Nueva categorias */
 categoriasController.nuevaCategorias = async(req,res) =>{
     try {
-        const categoria = new Categorias(req.body)
-        await categoria.save()
-        res.status(201).json({mensaje:"Categoria agregada con exito"})       
-    } catch (error) {
-        res.status(500).json({mensaje:'No se pudo agregar la categoria'})
-    }
-}
+        const categoria = new Categorias({
+            nombreCategoria: req.body.nombreCategoria
+        })
+        const nombreCategoria= req.body.nombreCategoria
+        console.log(categoria)
+        /*verifico que no haya otra categoria con ese nombre*/
+        await Categorias.findOne({nombreCategoria}, function(err, cat){
+            if(!cat){
+                res.status(200).json({mensaje:"categoria disponible, guardando.."})
+                categoria.save();
+            }else{
+                res.status(400).json(
+                    {mensaje:"ya existe una categoria con ese nombre"})  
+            }
+        })        
+        }catch(errr){
+console.log(errr)
+    }   
+};
 
 /* Lista de categorias */
 categoriasController.listarCategorias = async(req,res) =>{
