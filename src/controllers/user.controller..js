@@ -54,23 +54,4 @@ userController.actualizarUsuario = async (req,res) =>{
         res.status(404).json({mensaje:"No se pudo actualizar"})
     }
 }
-
-userController.rutasProtegidas = (req,res,next) =>{
-    const token = req.headers['access-token'];
-    if(token){
-        console.log(token)
-        jwt.verify(token, 'holgfdagfds', (err, decoded) =>{
-            console.log(decoded.foo)
-            if(err){
-                return res.json({mensaje:"Token invalido"})
-            } else {
-                req.decoded = decoded
-                res.json(token)
-                next()
-            }
-        })
-    } else {
-        res.send({mensaje:"Token no proveido"})
-    }
-}
 export default userController

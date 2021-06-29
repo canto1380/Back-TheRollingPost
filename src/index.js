@@ -4,6 +4,7 @@ import cors from 'cors'
 import path from 'path'
 import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
+import jwt, { sign } from 'jsonwebtoken'
 
 import './database'
 import userRoutes from './routes/user.route'
@@ -11,6 +12,7 @@ import categoriasRoutes from './routes/categorias.route'
 import noticiasRoutes from './routes/noticias.route'
 import clientesRoutes from './routes/clientes.route'
 import comentariosRoutes from './routes/comentarios.route'
+// import auth from './controllers/signinUser.controller'
 
 /*** CONFIGURACIONES ***/
 /* Instancia de express */
@@ -33,6 +35,32 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.static(path.join(__dirname,'../public')))
 app.use(bodyParser.json())
 // app.use('../public', express.static(`${__dirname}/storage/img`))
+// app.use(auth.headers)
+
+// app.use('/user',function(req, res, next) {
+//     let token = req.headers['authorization']
+//     console.log(req.headers)
+//     if (!token) {
+//       res.status(401).send({
+//         ok: false,
+//         message: 'Toket inexistente'
+//       })
+//     }
+//     token = token.replace('Bearer ', '')
+  
+//     jwt.verify(token, process.env.JWT_SECRET, function(err, tokenn) {
+//         console.log(err)
+//       if (err) {
+//         return res.status(401).send({
+//           ok: false,
+//           message: 'Token inválido'
+//         });
+//       } else {
+//         req.token = token
+//         next()
+//       }
+//     });
+//   });
 
 /* Rutas */
 app.use('/user', userRoutes)

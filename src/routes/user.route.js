@@ -21,7 +21,7 @@ router.put('/updateUser/:id', userController.actualizarUsuario)
 
 /* Ruta para autenticar usuario */
 router.post('/signin', signinController.signin)
+// router.get('/datos', signinController.rutasProtegidas)
 
-router.get('/datos', userController.rutasProtegidas)
 
 export default router;
