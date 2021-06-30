@@ -20,7 +20,7 @@ router.delete('/deleteUser/:id', userController.eliminarUsuario)
 router.put('/updateUser/:id', userController.actualizarUsuario)
 
 /* Ruta para autenticar usuario */
-router.post('/signin', signinController.signin)
+// router.post('/signin', signinController.signin)
 // router.get('/datos', signinController.rutasProtegidas)
 
 

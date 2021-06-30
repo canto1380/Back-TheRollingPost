@@ -12,6 +12,7 @@ import categoriasRoutes from './routes/categorias.route'
 import noticiasRoutes from './routes/noticias.route'
 import clientesRoutes from './routes/clientes.route'
 import comentariosRoutes from './routes/comentarios.route'
+import signin from './routes/signin.route'
 // import auth from './controllers/signinUser.controller'
 
 /*** CONFIGURACIONES ***/
@@ -37,34 +38,35 @@ app.use(bodyParser.json())
 // app.use('../public', express.static(`${__dirname}/storage/img`))
 // app.use(auth.headers)
 
-// app.use('/user',function(req, res, next) {
-//     let token = req.headers['authorization']
-//     console.log(req.headers)
-//     if (!token) {
-//       res.status(401).send({
-//         ok: false,
-//         message: 'Toket inexistente'
-//       })
-//     }
-//     token = token.replace('Bearer ', '')
+app.use('/categorias',function(req, res, next) {
+    let token = req.headers['authorization']
+    console.log(req.headers)
+    if (!token) {
+      res.status(401).send({
+        ok: false,
+        message: 'Toket inexistente'
+      })
+    }
+    token = token.replace('Bearer ', '')
   
-//     jwt.verify(token, process.env.JWT_SECRET, function(err, tokenn) {
-//         console.log(err)
-//       if (err) {
-//         return res.status(401).send({
-//           ok: false,
-//           message: 'Token inválido'
-//         });
-//       } else {
-//         req.token = token
-//         next()
-//       }
-//     });
-//   });
+    jwt.verify(token, process.env.JWT_SECRET, function(err, tokenn) {
+        console.log(err)
+      if (err) {
+        return res.status(401).send({
+          ok: false,
+          message: 'Token inválido'
+        });
+      } else {
+        req.token = token
+        next()
+      }
+    });
+  });
 
 /* Rutas */
+app.use('/admin', signin)
 app.use('/user', userRoutes)
-app.use('/categorias', categoriasRoutes)
+app.use('/', categoriasRoutes)
 app.use('/noticias', noticiasRoutes)
 app.use('/clientes', clientesRoutes)
 app.use('/comentarios', comentariosRoutes)
