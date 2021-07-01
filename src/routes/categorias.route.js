@@ -10,13 +10,13 @@ router.post('/addCategoria', categoriasController.nuevaCategorias)
 router.get('/listCategoria',categoriasController.listarCategorias)
 
 /* Ruta buscar usuario */
-router.get('/categorias/:id',categoriasController.buscarCategoria)
+router.get('/:id',categoriasController.buscarCategoria)
 
 /* Ruta eliminar usuario */
-router.delete('categorias/deleteCategoria/:id', categoriasController.eliminarCategoria)
+router.delete('/deleteCategoria/:id', categoriasController.eliminarCategoria)
 
 /* Ruta actulizar usuario */
-router.put('categorias/updateCategoria/:id', categoriasController.actualizarcategoria)
+router.put('/updateCategoria/:id', categoriasController.actualizarcategoria)
 
 
 export default router;

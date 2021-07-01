@@ -67,8 +67,8 @@ app.use('/secure/noticias', noticiasRoutes)
 app.use('/secure/clientes', clientesRoutes)
 app.use('/comentarios', comentariosRoutes)
 app.use("/categorias",categoriasRoutes)
-app.use("/noticias",categoriasRoutes)
-
+app.use("/noticias",noticiasRoutes)
+app.use('/clientes', clientesRoutes)
 
 
 module.exports = app

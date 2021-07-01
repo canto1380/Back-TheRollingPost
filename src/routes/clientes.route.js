@@ -3,9 +3,8 @@ import clientesCtrl from '../controllers/clientes.controller'
 
 const router = Router();
 
-router.route('/suscripcion')
-.get(clientesCtrl.listarClientes)
-.post(clientesCtrl.nuevaSuscripcion);
+router.get('/suscripcion',clientesCtrl.listarClientes)
+router.post('/suscribirse',clientesCtrl.nuevaSuscripcion);
 
 router.route('/:id')
 .delete(clientesCtrl.rechazarCancelarSuscripcion)
