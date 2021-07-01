@@ -5,7 +5,6 @@ import path from 'path'
 import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import jwt, { sign } from 'jsonwebtoken'
-
 import './database'
 import userRoutes from './routes/user.route'
 import categoriasRoutes from './routes/categorias.route'
@@ -13,7 +12,6 @@ import noticiasRoutes from './routes/noticias.route'
 import clientesRoutes from './routes/clientes.route'
 import comentariosRoutes from './routes/comentarios.route'
 import signin from './routes/signin.route'
-// import auth from './controllers/signinUser.controller'
 
 /*** CONFIGURACIONES ***/
 /* Instancia de express */

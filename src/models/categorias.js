@@ -15,5 +15,3 @@ const categoriasSchema = new schema({
 {timestamps: true})
 
 module.exports = mongoose.model("Categoria", categoriasSchema)
-// const Categorias = mongoose.model('Categoria', categoriasSchema)
-// export default Categorias
