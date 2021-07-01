@@ -35,40 +35,42 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(express.static(path.join(__dirname,'../public')))
 app.use(bodyParser.json())
-// app.use('../public', express.static(`${__dirname}/storage/img`))
-// app.use(auth.headers)
 
-app.use('/categorias',function(req, res, next) {
-    let token = req.headers['authorization']
-    console.log(req.headers)
-    if (!token) {
-      res.status(401).send({
-        ok: false,
-        message: 'Toket inexistente'
-      })
-    }
-    token = token.replace('Bearer ', '')
-  
-    jwt.verify(token, process.env.JWT_SECRET, function(err, tokenn) {
-        console.log(err)
-      if (err) {
-        return res.status(401).send({
-          ok: false,
-          message: 'Token inválido'
-        });
-      } else {
-        req.token = token
-        next()
-      }
-    });
-  });
+
+ app.use('/secure',function(req, res, next) {
+     let token = req.headers['authorization']
+     console.log(req.headers)
+     if (!token) {
+       res.status(401).send({
+         ok: false,
+         message: 'Toket inexistente'
+       })
+     }
+     token = token.replace('Bearer ', '')
+     jwt.verify(token, process.env.JWT_SECRET, function(err, tokenn) {
+         console.log(err)
+       if (err) {
+         return res.status(401).send({
+           ok: false,
+           message: 'Token inválido'
+         });
+       } else {
+         req.token = token
+         next()
+       }
+     });
+   });
 
 /* Rutas */
 app.use('/admin', signin)
-app.use('/user', userRoutes)
-app.use('/', categoriasRoutes)
-app.use('/noticias', noticiasRoutes)
-app.use('/clientes', clientesRoutes)
+app.use('/secure/user', userRoutes)
+app.use('/secure/categorias', categoriasRoutes)
+app.use('/secure/noticias', noticiasRoutes)
+app.use('/secure/clientes', clientesRoutes)
 app.use('/comentarios', comentariosRoutes)
+app.use("/categorias",categoriasRoutes)
+app.use("/noticias",categoriasRoutes)
+
+
 
 module.exports = app

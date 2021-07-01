@@ -4,7 +4,7 @@ import categoriasController from '../controllers/categorias.controller'
 const router = Router();
 
 /* Ruta agregar usuario */
-router.post('/categorias/addCategoria', categoriasController.nuevaCategorias)
+router.post('/addCategoria', categoriasController.nuevaCategorias)
 
 /* Ruta listar usuarios */
 router.get('/listCategoria',categoriasController.listarCategorias)
