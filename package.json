@@ -3,10 +3,7 @@
   "version": "1.0.0",
   "description": "Proyecto Final - The Rolling Post",
   "main": "index.js",
-  "scripts": {
-    "start": "babel-node src/index.js",
-    "dev": "nodemon --exec babel-node src/index.js"
-  },
+  
   "keywords": [
     "The",
     "Rolling",
@@ -15,6 +12,14 @@
     "Diario",
     "informativo"
   ],
+  "scripts": {
+    "dev": "react-scripts start",
+    "start": "serve -s build",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env =jsdom",
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "npm run build"
+    },
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -29,7 +34,8 @@
     "lodash": "^4.17.21",
     "mongoose": "^5.12.9",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "serve": "^14.0.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.19.0",
