@@ -18,7 +18,7 @@ userController.nuevoUsuario = async(req,res) =>{
 /* Lista de usuarios */
 userController.listarUsuarios = async(req,res) =>{
     try {
-        const usuarios = await User.find()
+        const usuarios = await User.find( {deleted: false} ).populate( {path: 'idPais'} ).populate(  {path: 'idProvincia'}  ).populate(  {path: 'idLocalidad'}  )
         res.status(200).json(usuarios)
     } catch (error) {
         res.status(404).json({mensaje: "Error al listar usuarios"})
@@ -28,7 +28,7 @@ userController.listarUsuarios = async(req,res) =>{
 /* Buscar un usuario por ID */
 userController.buscarUsuario = async(req,res) =>{
     try {
-        const usuario = await User.findById(req.params.id)
+        const usuario = await User.findById(req.params.id).populate( {path: 'idPais'} ).populate(  {path: 'idProvincia'}  ).populate(  {path: 'idLocalidad'}  )
         res.status(200).json(usuario)
     } catch (error) {
         res.status(500).json({mensaje:"Error al buscar un usuarios por ID"})

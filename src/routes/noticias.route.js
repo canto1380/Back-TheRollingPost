@@ -1,10 +1,11 @@
 import {Router} from 'express'
 import noticiasControlador from '../controllers/noticias.controller'
+import {validJWT} from '../controllers/auth'
 
 const router = Router();
 
 /* Ruta agregar noticia */
-router.post('/addNoticia' ,noticiasControlador.nuevaNoticia)
+router.post('/addNoticia', validJWT ,noticiasControlador.nuevaNoticia)
 
 /* Ruta listar noticias */
 router.get('/listNoticias',noticiasControlador.listarNoticias)
@@ -13,12 +14,12 @@ router.get('/listNoticias',noticiasControlador.listarNoticias)
 router.get('/:id',noticiasControlador.buscarNoticia)
 
 // router.param('byId', noticiasControlador.byId)
-router.get('/foto/:byId', noticiasControlador.buscarPhoto)
+router.get('/foto/:byId', validJWT, noticiasControlador.buscarPhoto)
 
 /* Ruta eliminar noticia */
-router.delete('/:id', noticiasControlador.eliminarNoticia)
+router.delete('/:id', validJWT, noticiasControlador.eliminarNoticia)
 
 /* Ruta actualizar noticias */
-router.put('/:id', noticiasControlador.actualizarNoticia)
+router.put('/:id', validJWT, noticiasControlador.actualizarNoticia)
 
 export default router;
