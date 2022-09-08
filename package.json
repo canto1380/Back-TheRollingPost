@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "Proyecto Final - The Rolling Post",
   "main": "index.js",
+  "type":"module",
   "scripts": {
     "start": "babel-node src/index.js",
     "dev": "nodemon --exec babel-node src/index.js"
   },
-  "type":"module",
   "keywords": [
     "The",
     "Rolling",
