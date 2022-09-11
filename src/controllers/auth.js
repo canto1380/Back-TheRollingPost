@@ -6,7 +6,6 @@ import signinController from "./signinUser.controller";
 export const validJWT = async (req, res, next) => {
   try {
     const token = req.header("Authorization");
-    console.log(token);
     res.header("Access-Control-Expose-Headers", "Token-Refresh");
     if (!token) {
       res.status(401).send({

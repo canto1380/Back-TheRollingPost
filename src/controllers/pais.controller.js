@@ -15,7 +15,7 @@ paisControlador.nuevoPais = async (req, res) => {
 
 /* Lista de paises */
 paisControlador.listarPaises = async (req, res) => {
-  let order = req.query.order ? req.query.order : "desc";
+  let order = req.query.order ? req.query.order : "asc";
   let sortBy = req.query.sortBy ? req.query.sortBy : "createdAt";
   try {
     await Pais.find()
@@ -27,7 +27,7 @@ paisControlador.listarPaises = async (req, res) => {
             error: "No se puede listar los paises",
           });
         } else {
-          res.json(paises);
+          res.status(200).json(paises);
         }
       });
   } catch (error) {
