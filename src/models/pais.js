@@ -6,7 +6,8 @@ const paisSchema = new Schema({
         type:String,
         trim: true,
         required: true,
-        maxLength: 60
+        minLength: 4,
+        maxLength: 40
     },
     deleted: {
         type: Boolean,

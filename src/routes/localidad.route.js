@@ -13,6 +13,9 @@ router.get('/listaLocalidades',localidadControlador.listarLocalidad)
 /* Ruta listar Localidad no eliminadas */
 router.get('/localidadesNoEliminadas',localidadControlador.localidadesNoEliminadas)
 
+/* Ruta listar Localidad no eliminadas sin paginacion */
+router.get('/localidadesNoEliminadas-todas',localidadControlador.localidadesNoEliminadas1)
+
 /* Ruta buscar Localidad */
 router.get('/:id',localidadControlador.buscarLocalidad)
 
@@ -21,5 +24,8 @@ router.delete('/:id', validJWT, localidadControlador.eliminarLocalidad)
 
 /* Ruta actualizar Localidad */
 router.put('/:id', validJWT, localidadControlador.actualizarLocalidad)
+
+/* Restaurar Localidad */
+router.put('/restaurarLocalidad/:id', validJWT, localidadControlador.restaurarLocalidad)
 
 export default router;
