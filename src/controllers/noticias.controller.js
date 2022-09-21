@@ -1,28 +1,10 @@
 const Noticia = require('../models/noticias')
-const Categoria = require('../models/categorias')
-
 const noticiasControlador ={}
 
 /* Nueva noticia */
 noticiasControlador.nuevaNoticia = async (req,res) => {
     try {
-        // let not = new formidable.IncomingForm()
-        // not.keepExtensions = true;
-        // not.parse(req, (err, campos, files)=>{
-        //     if(err){
-        //         return res.status(400).json({mensaje:"Error en la carga de la img"})
-        //     }
-        //     const {titulo, descripcion, categoria, pieDeFoto, descripNoticia, autor, hora, fecha} = campos;
-        //     let noticia = new Noticia(campos)
-    
-        //     if(files.photo){
-        //         noticia.photo.data = fs.readFileSync(files.photo.path)
-        //         noticia.photo.contentType = files.photo.type
-        //     }
-        //     noticia.save()
-        //     res.json(noticia)
-        // })
-
+       
             let noticia = new Noticia(req.body)
             await noticia.save()
             res.status(201).json(noticia)
@@ -39,7 +21,7 @@ noticiasControlador.listarNoticias = async(req,res) =>{
     try {
         await Noticia.find()
         .sort([[sortBy, order]])
-        .populate( {path: "noticias.categoria"})
+        .populate( {path: "categoria"})
         .exec((err, noticia) => {
          if (err) {
            return res.status(400).json({
@@ -57,17 +39,19 @@ noticiasControlador.listarNoticias = async(req,res) =>{
 }
 
 /* Buscar una noticia por ID */
-noticiasControlador.buscarNoticia = async(req,res) =>{
+noticiasControlador.buscarNoticia = async(req,res)=>{ 
     try {
-        const noticia = await Noticia.findById(req.params.id)
+        const noticia = await Noticia.findById(req.params.id).populate("categoria")
         res.status(200).json(noticia)
     } catch (error) {
         res.status(500).json({mensaje:"Error al buscar un noticias por ID"})
     }
 }
 
+
+
 noticiasControlador.byId =(req,res,next,id)=>{
-    Noticia.findById(id)
+    Noticia.findById(id).populate("categoria")
     .exec((err, noticia) => {
       if (err || !noticia) {
         return res.status(400).json({

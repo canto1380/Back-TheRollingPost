@@ -21,7 +21,7 @@ const noticiaSchema = new Schema({
     categoria:{
         type: Schema.Types.ObjectId,
         ref:'Categoria',
-        require:true
+        required:true
     }
     ,
     foto:{

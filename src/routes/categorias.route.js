@@ -1,22 +1,23 @@
 import {Router} from 'express'
 import categoriasController from '../controllers/categorias.controller'
+import {validJWT} from '../controllers/auth'
 
 const router = Router();
 
 /* Ruta agregar usuario */
-router.post('/addCategoria', categoriasController.nuevaCategorias)
+router.post('/addCategoria', validJWT, categoriasController.nuevaCategorias)
 
 /* Ruta listar usuarios */
 router.get('/listCategoria',categoriasController.listarCategorias)
 
 /* Ruta buscar usuario */
-router.get('/categoria/:id',categoriasController.buscarCategoria)
+router.get('/:id', validJWT,categoriasController.buscarCategoria)
 
 /* Ruta eliminar usuario */
-router.delete('/deleteCategoria/:id', categoriasController.eliminarCategoria)
+router.delete('/deleteCategoria/:id', validJWT, categoriasController.eliminarCategoria)
 
 /* Ruta actulizar usuario */
-router.put('/updateCategoria/:id', categoriasController.actualizarcategoria)
+router.put('/updateCategoria/:id', validJWT, categoriasController.actualizarcategoria)
 
 
 export default router;
