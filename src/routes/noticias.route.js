@@ -10,6 +10,9 @@ router.post('/addNoticia', validJWT ,noticiasControlador.nuevaNoticia)
 /* Ruta listar noticias */
 router.get('/listNoticias',noticiasControlador.listarNoticias)
 
+/* Ruta listar noticias publicadas*/
+router.get('/listNoticiasPublicadas',noticiasControlador.listarNoticiasPublicadas)
+
 /* Ruta buscar noticia */
 router.get('/:id',noticiasControlador.buscarNoticia)
 
