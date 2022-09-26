@@ -5,7 +5,9 @@ const categoriasSchema = new schema({
     nombreCategoria:{
         type:String,
         required:true,
-        unique: true
+        unique: true,
+        minLength: 4,
+        maxLength: 40
     },
     destacada:{
         type: Boolean,
