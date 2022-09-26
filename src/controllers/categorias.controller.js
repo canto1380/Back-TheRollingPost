@@ -9,7 +9,6 @@ categoriasController.nuevaCategorias = async (req, res) => {
       nombreCategoria: req.body.nombreCategoria,
     });
     const nombreCategoria = req.body.nombreCategoria;
-    console.log(categoria);
     /*verifico que no haya otra categoria con ese nombre*/
     await Categorias.findOne({ nombreCategoria }, function (err, cat) {
       if (!cat) {
