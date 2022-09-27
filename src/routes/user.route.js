@@ -4,7 +4,7 @@ import {validJWT} from '../controllers/auth'
 const router = Router();
 
 /* Ruta agregar usuario */
-router.post('/addUser', validJWT, userController.nuevoUsuario)
+router.post('/addUser', userController.nuevoUsuario)
 
 /* Ruta listar usuarios */
 router.get('/listUser', validJWT, userController.listarUsuarios)
