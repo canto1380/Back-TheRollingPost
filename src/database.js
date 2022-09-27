@@ -1,8 +1,8 @@
 import mongoose from 'mongoose'
 
-//const url = 'mongodb+srv://tate1380:1380@cluster0.vizhklz.mongodb.net/test'
+const url = 'mongodb+srv://tate1380:1380@cluster0.vizhklz.mongodb.net/test'
 
-const url= 'mongodb://localhost:27017/therollingpost'
+//const url= 'mongodb://localhost:27017/therollingpost'
 mongoose.connect(url,{
     useNewUrlParser:true,
     useUnifiedTopology:true,

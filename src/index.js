@@ -19,6 +19,7 @@ import provinciasRoutes from "./routes/provincia.route";
 import localidadesRoutes from "./routes/localidad.route";
 import webHooksRoutes from './routes/webHooks.route'
 import tarjetaPago  from './routes/tarjetaPago-route'
+import suscripcionesContratadas from './routes/suscripcionesContratadas.route'
 
 import {validJWT} from './controllers/auth'
 
@@ -87,5 +88,6 @@ app.use("/provincia", provinciasRoutes);
 app.use("/localidad", localidadesRoutes);
 app.use('/mercado-pago', webHooksRoutes);
 app.use('/tarjeta-pago', tarjetaPago)
+app.use('/suscripciones-contratadas', suscripcionesContratadas)
 
 module.exports = app;
