@@ -9,6 +9,7 @@ tarjetaPago.nuevaTarjeta = async(req, res) => {
             res.status(400).json({ mensaje: 'Ya existe la tarjeta ingresada' })
         } else {
             const tarjeta = new TarjetaPago(req.body)
+            console.log(tarjeta)
             await tarjeta.save()
             res.status(201).json(tarjeta)
         }
@@ -26,8 +27,8 @@ const buscarTarjeta = async(tarjeta) => {
 
 tarjetaPago.listarTarjetasPorCuenta = async(req, res) => {
     try {
-        const { email = '' } = req.query
-        const tarjetas = await TarjetaPago.find({email})
+        const { emailRegistro = '' } = req.query
+        const tarjetas = await TarjetaPago.find({emailRegistro})
         res.status(200).json(tarjetas)
     } catch (error) {
         res.status(404).json({ mensaje: "Error al listar las tarjetas" });

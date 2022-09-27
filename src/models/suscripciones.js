@@ -21,11 +21,6 @@ const suscripcionesSchema = new Schema(
       required: true,
       maxlength: 10,
     },
-    // periodo: {
-    //   type: Date,
-    //   trim: true,
-    //   required: true,
-    // },
     deleted: {
       type: Boolean,
       default: false,
@@ -34,6 +29,6 @@ const suscripcionesSchema = new Schema(
   { timestamps: true }
 );
 
-const Suscipciones = mongoose.model("suscripciones", suscripcionesSchema);
+const Suscipciones = mongoose.model("Suscripciones", suscripcionesSchema);
 
 export default Suscipciones;

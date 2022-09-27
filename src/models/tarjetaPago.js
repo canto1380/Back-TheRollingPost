@@ -9,11 +9,10 @@ const tarjetasSchema = new Schema(
             minlength: 10,
             maxlength: 70
         },
-        email: {
+        emailRegistro: {
             type: String,
             trim: true,
             required: true,
-            unique: true,
             maxlength: 40,
           },
         tipoDocumento: {
@@ -38,7 +37,8 @@ const tarjetasSchema = new Schema(
             trim: true,
             required: true,
             minlength: 16,
-            maxlength:16
+            maxlength:16,
+            unique: true,
         },
         mes: {
             type: Number,
@@ -61,5 +61,5 @@ const tarjetasSchema = new Schema(
     {timestamps: true}
 );
 
-const TarjetaPago = mongoose.model('tajetaPago', tarjetasSchema)
+const TarjetaPago = mongoose.model('TarjetaPago', tarjetasSchema)
 export default TarjetaPago
