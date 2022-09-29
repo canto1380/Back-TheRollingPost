@@ -1,3 +1,6 @@
 /node_modules
 /.vscode
 /.env
+/src/routes/webHooks.route.js
+/src/controllers/webHooks.controller.js
+/src/services

@@ -17,7 +17,7 @@ import reservaRoutes from "./routes/reservas";
 import paisesRoutes from "./routes/paises.route";
 import provinciasRoutes from "./routes/provincia.route";
 import localidadesRoutes from "./routes/localidad.route";
-import webHooksRoutes from './routes/webHooks.route'
+// import webHooksRoutes from './routes/webHooks.route'
 import tarjetaPago  from './routes/tarjetaPago-route'
 import suscripcionesContratadas from './routes/suscripcionesContratadas.route'
 
@@ -86,7 +86,7 @@ app.use("/reservas", reservaRoutes);
 app.use("/pais", paisesRoutes);
 app.use("/provincia", provinciasRoutes);
 app.use("/localidad", localidadesRoutes);
-app.use('/mercado-pago', webHooksRoutes);
+// app.use('/mercado-pago', webHooksRoutes);
 app.use('/tarjeta-pago', tarjetaPago)
 app.use('/suscripciones-contratadas', suscripcionesContratadas)
 
