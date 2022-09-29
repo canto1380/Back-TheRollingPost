@@ -62,6 +62,7 @@ suscripcionesCtrl.suscripcionesNoEliminada = async (req, res) => {
 
 suscripcionesCtrl.buscarSuscripcion = async (req, res) => {
   try {
+    console.log(req.params.id)
     const suscripcion = await Suscripciones.findById(req.params.id);
     res.status(200).json(suscripcion);
   } catch (error) {

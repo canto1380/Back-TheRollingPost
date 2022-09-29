@@ -61,19 +61,10 @@ localidadControlador.listarLocalidad = async (req, res) => {
 };
 
 localidadControlador.localidadesNoEliminadas = async (req, res) => {
-  // const { page = 1, limit = 10, search = "" } = req.query;
   let order = req.query.order ? req.query.order : "desc";
   let sortBy = req.query.sortBy ? req.query.sortBy : "createdAt";
   try {
-    // const regex = new RegExp(search, "i");
-    // let filters = {
-    //   deleted: false,
-    //   localidad: regex,
-    // };
-    // const count = await Localidad.countDocuments();
     await Localidad.find({deleted: false})
-      // .limit(limit * 1)
-      // .skip((page - 1) * limit)
       .sort([[sortBy, order]])
       .populate({ path: "idProvincia" })
       .exec((err, localidad) => {
@@ -83,12 +74,6 @@ localidadControlador.localidadesNoEliminadas = async (req, res) => {
           });
         } else {
           res.status(200).json(localidad)
-          // res.status(200).json({
-          //   localidad,
-          //   totalRegister: count,
-          //   totalPages: Math.ceil(count / limit),
-          //   currentPage: page,
-          // });
         }
       });
   } catch (error) {
